@@ -20,8 +20,8 @@ Build a map-based application, which lets the user see geo-based data on a map a
 
 Fill in (either in English, or in Slovak):
 
-**Application description**: `<fill in>`
+**Application description**: Aplikacia sa venuje analyze mapovych dat z oblasti Chicaga. Zamerana bude na data z oblasti bike sharingu v spojeni s datami o kriminalite. Aplikacia bude zobrazovat informacie o kvantite kriminalnych cinov v jednotlivych oblastiach prostrednictvom vhodnej vizualizacie (predbezne heatmapa). Okrem toho bude aplikacia zobrazovat jednotlive stanice pre bicykle spolu s informaciou o tom, ako je dana stanica bezpecna (v zavislosti od kriminalnych cinov v jej okoli), napriklad rozlisenim urovne bezpecnosti roznymi farbami. Komplexnejsie vyuzitie najde aplikacia pri odporucani bezpecnej trasy z bodu A do bodu B. Pouzivatel si zvoli startove a cielove miesto, zada maximalnu vzdialenost, ktoru je ochotny prejst peso (vzdialenost medzi startom a startovacou stanicou / cielom a cielovou stanicou) a riziko, ktore je ochotny podstupit. Aplikacia mu navrhne startovaciu a cielovu stanicu tak, aby boli splnene jeho poziadavky na dlzku presunu peso a takisto aj jeho pozidavky na bezpecnost jednotlivych stanic.
 
-**Data source**: `<fill in>`
+**Data source**: Chicago Divvy Bicycle Sharing Data (www.kaggle.com/yingwurenjian/chicago-divvy-bicycle-sharing-data), Crimes in Chicago (www.kaggle.com/currie32/crimes-in-chicago)
 
-**Technologies used**: `<fill in>`
+**Technologies used**: BE: PHP (Laravel/Lumen), FE: HTML+CSS+JS (jQuery/Angular 2+)
