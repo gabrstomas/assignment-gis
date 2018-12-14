@@ -11,6 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'PageController@homepage');
+Route::get('/neighborhoods', 'PageController@neighborhoods');
+Route::get('/schools', 'PageController@schools');
+Route::get('/stations', 'PageController@stations');
+Route::get('/explore', 'PageController@explore');
+Route::get('/search', 'PageController@search');
+
+Route::get('/test', 'TestController@test');
