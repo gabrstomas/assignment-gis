@@ -1,0 +1,128 @@
+[
+  {
+    "Plan": {
+      "Inner Unique": false,
+      "Startup Cost": 3731.41,
+      "Plans": [
+        {
+          "Startup Cost": 0.14,
+          "Scan Direction": "Forward",
+          "Plan Width": 9115,
+          "Node Type": "Index Scan",
+          "Index Cond": "(gid = 6)",
+          "Plan Rows": 1,
+          "Relation Name": "neighborhoods",
+          "Alias": "neighborhoods",
+          "Parallel Aware": false,
+          "Parent Relationship": "InitPlan",
+          "Total Cost": 8.16,
+          "Subplan Name": "CTE neighborhood",
+          "Index Name": "neighborhoods_pkey"
+        },
+        {
+          "Filter": "(amenity = 'school'::text)",
+          "Startup Cost": 0,
+          "Node Type": "Seq Scan",
+          "Plan Rows": 1685,
+          "Relation Name": "planet_osm_point",
+          "Alias": "planet_osm_point",
+          "Parallel Aware": false,
+          "Parent Relationship": "InitPlan",
+          "Plan Width": 60,
+          "Subplan Name": "CTE all_schools",
+          "Total Cost": 3042.24
+        },
+        {
+          "Inner Unique": false,
+          "Startup Cost": 0,
+          "Plans": [
+            {
+              "Startup Cost": 0,
+              "CTE Name": "neighborhood",
+              "Node Type": "CTE Scan",
+              "Plan Rows": 1,
+              "Alias": "neighborhood",
+              "Parallel Aware": false,
+              "Parent Relationship": "Outer",
+              "Plan Width": 32,
+              "Total Cost": 0.02
+            },
+            {
+              "Startup Cost": 0,
+              "CTE Name": "all_schools",
+              "Node Type": "CTE Scan",
+              "Plan Rows": 1685,
+              "Alias": "all_schools",
+              "Parallel Aware": false,
+              "Parent Relationship": "Inner",
+              "Plan Width": 72,
+              "Total Cost": 33.7
+            }
+          ],
+          "Node Type": "Nested Loop",
+          "Plan Rows": 1,
+          "Join Type": "Inner",
+          "Parallel Aware": false,
+          "Parent Relationship": "InitPlan",
+          "Plan Width": 72,
+          "Subplan Name": "CTE schools",
+          "Join Filter": "((st_transform(neighborhood.geom, 4326) ~ st_transform(all_schools.way, 4326)) AND _st_contains(st_transform(neighborhood.geom, 4326), st_transform(all_schools.way, 4326)))",
+          "Total Cost": 492.88
+        },
+        {
+          "Startup Cost": 0,
+          "CTE Name": "schools",
+          "Node Type": "CTE Scan",
+          "Plan Rows": 1,
+          "Alias": "schools",
+          "Parallel Aware": false,
+          "Parent Relationship": "Outer",
+          "Plan Width": 72,
+          "Total Cost": 0.02
+        },
+        {
+          "Startup Cost": 188.13,
+          "Plans": [
+            {
+              "Startup Cost": 188.13,
+              "Plans": [
+                {
+                  "Startup Cost": 0,
+                  "Node Type": "Seq Scan",
+                  "Plan Rows": 655,
+                  "Relation Name": "stations",
+                  "Alias": "stations",
+                  "Parallel Aware": false,
+                  "Parent Relationship": "Outer",
+                  "Plan Width": 32,
+                  "Total Cost": 184.85
+                }
+              ],
+              "Sort Key": [
+                "(_st_distance((st_transform(schools.way, 4326))::geography, (st_transform(stations.geo, 4326))::geography, '0'::double precision, true))"
+              ],
+              "Node Type": "Sort",
+              "Plan Rows": 655,
+              "Parallel Aware": false,
+              "Parent Relationship": "Outer",
+              "Plan Width": 32,
+              "Total Cost": 189.76
+            }
+          ],
+          "Node Type": "Limit",
+          "Plan Rows": 1,
+          "Parallel Aware": false,
+          "Parent Relationship": "Inner",
+          "Plan Width": 32,
+          "Total Cost": 188.13
+        }
+      ],
+      "Node Type": "Nested Loop",
+      "Plan Rows": 1,
+      "Join Type": "Inner",
+      "Parallel Aware": false,
+      "Plan Width": 104,
+      "Total Cost": 3733.96
+    }
+  }
+]

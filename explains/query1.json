@@ -1,0 +1,60 @@
+[
+  {
+    "Plan": {
+      "Partial Mode": "Simple",
+      "Startup Cost": 0.41,
+      "Plans": [
+        {
+          "Inner Unique": false,
+          "Startup Cost": 0.41,
+          "Plans": [
+            {
+              "Startup Cost": 0.14,
+              "Scan Direction": "Forward",
+              "Plan Width": 9131,
+              "Node Type": "Index Scan",
+              "Plan Rows": 98,
+              "Relation Name": "neighborhoods",
+              "Alias": "neighborhoods",
+              "Parallel Aware": false,
+              "Parent Relationship": "Outer",
+              "Total Cost": 45.61,
+              "Index Name": "neighborhoods_pkey"
+            },
+            {
+              "Filter": "_st_contains(neighborhoods.geom, geo)",
+              "Startup Cost": 0.27,
+              "Scan Direction": "NoMovement",
+              "Plan Width": 36,
+              "Node Type": "Index Scan",
+              "Index Cond": "(neighborhoods.geom ~ geo)",
+              "Plan Rows": 1,
+              "Relation Name": "crimes",
+              "Alias": "crimes",
+              "Parallel Aware": false,
+              "Parent Relationship": "Inner",
+              "Total Cost": 13.17,
+              "Index Name": "crimes_index"
+            }
+          ],
+          "Node Type": "Nested Loop",
+          "Plan Rows": 98,
+          "Join Type": "Left",
+          "Parallel Aware": false,
+          "Parent Relationship": "Outer",
+          "Plan Width": 9135,
+          "Total Cost": 1337.48
+        }
+      ],
+      "Node Type": "Aggregate",
+      "Strategy": "Sorted",
+      "Plan Rows": 98,
+      "Parallel Aware": false,
+      "Group Key": [
+        "neighborhoods.gid"
+      ],
+      "Plan Width": 56,
+      "Total Cost": 1584.69
+    }
+  }
+]

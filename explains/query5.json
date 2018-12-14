@@ -1,0 +1,42 @@
+[
+  {
+    "Plan": {
+      "Inner Unique": false,
+      "Startup Cost": 0.28,
+      "Plans": [
+        {
+          "Startup Cost": 0.28,
+          "Scan Direction": "Forward",
+          "Plan Width": 32,
+          "Node Type": "Index Scan",
+          "Index Cond": "(id = 505)",
+          "Plan Rows": 1,
+          "Relation Name": "stations",
+          "Alias": "stations",
+          "Parallel Aware": false,
+          "Parent Relationship": "Outer",
+          "Total Cost": 8.29,
+          "Index Name": "stations_pkey"
+        },
+        {
+          "Startup Cost": 0,
+          "Node Type": "Seq Scan",
+          "Plan Rows": 1767,
+          "Relation Name": "crimes",
+          "Alias": "crimes",
+          "Parallel Aware": false,
+          "Parent Relationship": "Inner",
+          "Plan Width": 80,
+          "Total Cost": 44.67
+        }
+      ],
+      "Node Type": "Nested Loop",
+      "Plan Rows": 1,
+      "Join Type": "Inner",
+      "Parallel Aware": false,
+      "Plan Width": 80,
+      "Join Filter": "(((stations.geo)::geography && _st_expand((crimes.geo)::geography, '1000'::double precision)) AND ((crimes.geo)::geography && _st_expand((stations.geo)::geography, '1000'::double precision)) AND _st_dwithin((stations.geo)::geography, (crimes.geo)::geography, '1000'::double precision, true))",
+      "Total Cost": 991.98
+    }
+  }
+]

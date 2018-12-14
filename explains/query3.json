@@ -1,0 +1,109 @@
+[
+  {
+    "Plan": {
+      "Partial Mode": "Simple",
+      "Startup Cost": 1182.41,
+      "Plans": [
+        {
+          "Startup Cost": 0.14,
+          "Scan Direction": "Forward",
+          "Plan Width": 9115,
+          "Node Type": "Index Scan",
+          "Index Cond": "(gid = 6)",
+          "Plan Rows": 1,
+          "Relation Name": "neighborhoods",
+          "Alias": "neighborhoods",
+          "Parallel Aware": false,
+          "Parent Relationship": "InitPlan",
+          "Total Cost": 8.16,
+          "Subplan Name": "CTE neighborhood",
+          "Index Name": "neighborhoods_pkey"
+        },
+        {
+          "Startup Cost": 1174.25,
+          "Plans": [
+            {
+              "Inner Unique": false,
+              "Startup Cost": 0,
+              "Plans": [
+                {
+                  "Inner Unique": false,
+                  "Startup Cost": 0,
+                  "Plans": [
+                    {
+                      "Startup Cost": 0,
+                      "CTE Name": "neighborhood",
+                      "Node Type": "CTE Scan",
+                      "Plan Rows": 1,
+                      "Alias": "neighborhood",
+                      "Parallel Aware": false,
+                      "Parent Relationship": "Outer",
+                      "Plan Width": 32,
+                      "Total Cost": 0.02
+                    },
+                    {
+                      "Startup Cost": 0,
+                      "Node Type": "Seq Scan",
+                      "Plan Rows": 655,
+                      "Relation Name": "stations",
+                      "Alias": "stations",
+                      "Parallel Aware": false,
+                      "Parent Relationship": "Inner",
+                      "Plan Width": 60,
+                      "Total Cost": 14.55
+                    }
+                  ],
+                  "Node Type": "Nested Loop",
+                  "Plan Rows": 1,
+                  "Join Type": "Left",
+                  "Parallel Aware": false,
+                  "Parent Relationship": "Outer",
+                  "Plan Width": 60,
+                  "Join Filter": "((st_transform(neighborhood.geom, 4326) ~ st_transform(stations.geo, 4326)) AND _st_contains(st_transform(neighborhood.geom, 4326), st_transform(stations.geo, 4326)))",
+                  "Total Cost": 193.06
+                },
+                {
+                  "Startup Cost": 0,
+                  "Node Type": "Seq Scan",
+                  "Plan Rows": 1767,
+                  "Relation Name": "crimes",
+                  "Alias": "crimes",
+                  "Parallel Aware": false,
+                  "Parent Relationship": "Inner",
+                  "Plan Width": 36,
+                  "Total Cost": 44.67
+                }
+              ],
+              "Node Type": "Nested Loop",
+              "Plan Rows": 1,
+              "Join Type": "Left",
+              "Parallel Aware": false,
+              "Parent Relationship": "Outer",
+              "Plan Width": 64,
+              "Join Filter": "(((stations.geo)::geography && _st_expand((crimes.geo)::geography, '1000'::double precision)) AND ((crimes.geo)::geography && _st_expand((stations.geo)::geography, '1000'::double precision)) AND _st_dwithin((stations.geo)::geography, (crimes.geo)::geography, '1000'::double precision, true))",
+              "Total Cost": 1174.24
+            }
+          ],
+          "Sort Key": [
+            "stations.id"
+          ],
+          "Node Type": "Sort",
+          "Plan Rows": 1,
+          "Parallel Aware": false,
+          "Parent Relationship": "Outer",
+          "Plan Width": 64,
+          "Total Cost": 1174.25
+        }
+      ],
+      "Node Type": "Aggregate",
+      "Strategy": "Sorted",
+      "Plan Rows": 1,
+      "Parallel Aware": false,
+      "Group Key": [
+        "stations.id"
+      ],
+      "Plan Width": 68,
+      "Total Cost": 1184.94
+    }
+  }
+]

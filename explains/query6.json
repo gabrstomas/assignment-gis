@@ -1,0 +1,29 @@
+[
+  {
+    "Plan": {
+      "Startup Cost": 3042.24,
+      "Plans": [
+        {
+          "Filter": "(amenity = 'school'::text)",
+          "Startup Cost": 0,
+          "Node Type": "Seq Scan",
+          "Plan Rows": 1685,
+          "Relation Name": "planet_osm_point",
+          "Alias": "planet_osm_point",
+          "Parallel Aware": false,
+          "Parent Relationship": "InitPlan",
+          "Plan Width": 60,
+          "Subplan Name": "CTE schools",
+          "Total Cost": 3042.24
+        }
+      ],
+      "CTE Name": "schools",
+      "Node Type": "CTE Scan",
+      "Plan Rows": 1685,
+      "Alias": "schools",
+      "Parallel Aware": false,
+      "Plan Width": 72,
+      "Total Cost": 7301.07
+    }
+  }
+]
