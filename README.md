@@ -11,6 +11,7 @@ Build a map-based application, which lets the user see geo-based data on a map a
 - [Open Street Maps](https://www.openstreetmap.org/)
 - [Chicago Divvy Bicycle Sharing Data](www.kaggle.com/yingwurenjian/chicago-divvy-bicycle-sharing-data)
 - [Crimes in Chicago](www.kaggle.com/currie32/crimes-in-chicago)
+- [Chicago Community Areas](https://data.cityofchicago.org/Facilities-Geographic-Boundaries/Boundaries-Community-Areas-current-/cauq-8yn6)
 
 ## Safe Schools Chicago
 
